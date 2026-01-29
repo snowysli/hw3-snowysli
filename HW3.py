@@ -25,7 +25,7 @@ class CouponDispenser:
 
     """
 
-    def __init__(self, coupon_cards, customer, issued):
+    def __init__(self, coupon_cards):
         """
         Initialize a new CouponDispenser object.
 
@@ -33,8 +33,6 @@ class CouponDispenser:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
         self.coupon_cards = coupon_cards
-        self.customer_roster = customer
-        self.issue_indices = issued
         # TODO: Implement per instructions
         pass
 
@@ -153,7 +151,7 @@ class CouponDispenser:
             for j in self.issue_indices:
                 if j == i:
                     count += 1
-            print(f"{self.coupon_cards[i]}, distribution count: {count}".)
+            print(f"{self.coupon_cards[i]}, distribution count: {count}.")
         # TODO: Implement per instructions
         pass
 
