@@ -3,7 +3,7 @@
 # Email: snowysli@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.: 
+# e.g.: Chatgpt was used to identify what the bug was that wasn't letting me type 
 # Asked ChatGPT hints for debugging and suggesting the general structure of the code
 # Did your use of GenAI on this assignment align with your goals and guidelines in 
 #    your Gen AI contract? If not, why?
@@ -33,6 +33,8 @@ class CouponDispenser:
             coupon_cards (list[str]): list of possible coupons users can receive.
         """
         self.coupon_cards = coupon_cards
+        self.customer_roster = []
+        self.issued_indices = []
         # TODO: Implement per instructions
         pass
 
@@ -49,7 +51,7 @@ class CouponDispenser:
         results = ""
         for i in range(len(self.coupon_cards)):
             if i > 0:
-                results += " | "
+                results += "|"
             results += self.coupon_cards[i]
         
         return results
@@ -75,12 +77,12 @@ class CouponDispenser:
         
         for i in range(len(self.customer_roster)):
             if self.customer_roster[i] == name:
-                coupon = self.coupon_cards[self.issue_indices[i]]
-                return f"The name already has a coupon: {coupon}"
+                coupon = self.coupon_cards[self.issued_indices[i]]
+                return f"That name already has a coupon: {coupon}"
         
-        coupon_index = random.range(len(self.coupon_cards))
+        coupon = random.randrange(len(self.coupon_cards))
         self.customer_roster.append(name)
-        self.issue_indices.append(coupon)
+        self.issued_indices.append(coupon)
         return self.coupon_cards[coupon]
         # TODO: Implement per instructions
         pass
@@ -104,7 +106,7 @@ class CouponDispenser:
         while True:
             message = f"Round {round} - Enter a name (or a comma-separated list), or type 'show' or 'exit': "
 
-            user_input = input(message)
+            user_input = str(input(message))
 
             if user_input == "exit":
                 print("Goodbye!")
@@ -112,7 +114,7 @@ class CouponDispenser:
 
             if user_input == "show":
                 for i in range(len(self.customer_roster)):
-                    print(f"{self.customer_roster[i]} : {self.coupon_cards[self.issue_indices[i]]}")
+                    print(f"{self.customer_roster[i]}:{self.coupon_cards[self.issued_indices[i]]}")
 
             else: 
                 names = user_input.split(",")
@@ -123,7 +125,7 @@ class CouponDispenser:
                         print(coupon)
 
                     
-        round += 1
+            round += 1
         # TODO: Implement per instructions 
         pass
 
@@ -142,16 +144,16 @@ class CouponDispenser:
         Returns:
             None
         """
-        if self.issue_indices == 0:
+        if len(self.issued_indices) == 0:
             print("Empty")
             return
 
         for i in range(len(self.coupon_cards)):
             count = 0
-            for j in self.issue_indices:
+            for j in self.issued_indices:
                 if j == i:
                     count += 1
-            print(f"{self.coupon_cards[i]}, distribution count: {count}.")
+            print(f"{self.coupon_cards[i]} distribution count: {count}.")
         # TODO: Implement per instructions
         pass
 
@@ -176,6 +178,8 @@ def main():
     box = CouponDispenser(coupon_cards)
     box.distribute_session()
     box.tally_distribution()
+
+    test()
     pass
 
 
