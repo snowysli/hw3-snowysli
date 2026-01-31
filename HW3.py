@@ -3,7 +3,9 @@
 # Email: snowysli@umich.edu
 # Who or what you worked with on this homework (including generative AI like ChatGPT):
 # If you worked with generative AI also add a statement for how you used it.
-# e.g.: Chatgpt was used to identify what the bug was that wasn't letting me type 
+
+# e.g.: Chatgpt was used to identify what the bug was that wasn't letting me type,
+# and trying to figure out why main: coupon_cards list is properly constructed is failing
 # Asked ChatGPT hints for debugging and suggesting the general structure of the code
 # Did your use of GenAI on this assignment align with your goals and guidelines in 
 #    your Gen AI contract? If not, why?
@@ -171,15 +173,13 @@ def main():
         "10% off",
         "Free small coffee",
         "Buy 1 get 1 half off",
-        "Free extra espresso shot",
+        "Free extra espresso shot"
     ]
 
     # Uncomment the lines below as you implement each function.
     box = CouponDispenser(coupon_cards)
     box.distribute_session()
     box.tally_distribution()
-
-    test()
     pass
 
 
@@ -460,5 +460,5 @@ def test():
 
 if __name__ == "__main__":
     main()
-    # test()
+    test()
 
